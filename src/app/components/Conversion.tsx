@@ -98,7 +98,7 @@ export default function Component() {
     }
   };
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
+    <div className="max-w-4xl mx-auto py-12 px-6 ">
       <div className="flex items-center space-x-4">
         <img
           alt="Token logo"
@@ -134,7 +134,7 @@ export default function Component() {
           </Button>
         </div>
       </div>
-      <div className="mt-6 flex items-center space-x-4">
+      <div className="mt-6  items-center gap-4 md:flex justify-center">
         <div className="flex items-center space-x-3 w-full">
           <Input
             className="border rounded-md p-2  w-full"

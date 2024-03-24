@@ -18,7 +18,13 @@ export default function ConnectButton({ handleOpenModal }: Props) {
   }
 
   return account ? (
-    <Flex alignItems="center" bg="rgb(247, 248, 250)" borderRadius="xl" py="0">
+    <Flex
+      alignItems="center"
+      bg="rgb(247, 248, 250)"
+      borderRadius="xl"
+      py="0"
+      w={{ base: "auto", md: "50%" }}
+    >
       <Box px="3">
         <Text color="black" fontSize="md">
           {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(2)} ETH

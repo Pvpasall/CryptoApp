@@ -30,6 +30,7 @@ export default function Component() {
   const [secondCurrency, setSecondCurrency] = useState(Ether);
   const [price, setPrice] = useState(0);
   const [convertedPrice, setConvertedPrice] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [etherPrice, setEtherPrice] = useState(0);
 
   //i use _etherPrice pour les variables locales et etherPrice pour les states
@@ -38,22 +39,33 @@ export default function Component() {
     if (_etherPrice) {
       localStorage.setItem("etherPrice", _etherPrice);
       setEtherPrice(parseFloat(_etherPrice));
-      const amountInETH = 1 / parseFloat(_etherPrice);
-      setPrice(amountInETH);
-      setConvertedPrice(amountInETH);
+      setInitialPrice(_etherPrice);
     }
   };
   useEffect(() => {
     const _etherPrice = localStorage.getItem("etherPrice");
+    console.log(parseFloat(_etherPrice!));
     if (_etherPrice) {
       setEtherPrice(parseFloat(_etherPrice));
-      const amountInETH = 1 / parseFloat(_etherPrice);
-      setPrice(amountInETH);
-      setConvertedPrice(amountInETH);
+      setInitialPrice(parseFloat(_etherPrice));
     } else {
       getNewEthPrice();
     }
-  }, []);
+  }, [firstCurrency, secondCurrency]);
+  const setInitialPrice = (_etherPrice: number) => {
+    if (firstCurrency.symbol === Euro.symbol) {
+      const priceInETH = 1 / _etherPrice;
+      const amountInETH = amount / _etherPrice;
+      setConvertedPrice(amountInETH);
+      setPrice(priceInETH);
+    } else {
+      const priceInEURO = _etherPrice;
+      const amountInEURO = amount * _etherPrice;
+      setConvertedPrice(amountInEURO);
+      setPrice(priceInEURO);
+    }
+  };
+
   const refreshEtherPrice = async () => {
     const _etherPrice = await getEthPrice();
     if (_etherPrice) {
@@ -63,11 +75,27 @@ export default function Component() {
       setPrice(amountInETH);
     }
   };
-  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amountToConvert = parseFloat(e.target.value);
-    if (amountToConvert < 1) return;
-    const amountInETH = amountToConvert / etherPrice;
-    setConvertedPrice(amountInETH);
+    setAmount(amountToConvert);
+    if (firstCurrency.symbol === Euro.symbol) {
+      if (amountToConvert < 1) return;
+      const amountInETH = amountToConvert / etherPrice;
+      setConvertedPrice(amountInETH);
+    } else {
+      if (amountToConvert < 0) return;
+      const amountInEURO = amountToConvert * etherPrice;
+      setConvertedPrice(amountInEURO);
+    }
+  };
+  const swapCurrency = () => {
+    if (firstCurrency.symbol === Euro.symbol) {
+      setFirstCurrency(Ether);
+      setSecondCurrency(Euro);
+    } else {
+      setFirstCurrency(Euro);
+      setSecondCurrency(Ether);
+    }
   };
   return (
     <div className="max-w-4xl mx-auto py-12 px-6">
@@ -90,7 +118,8 @@ export default function Component() {
             {secondCurrency.name} ({secondCurrency.symbol})
           </h1>
           <p className="text-sm text-gray-600">
-            1 {firstCurrency.currency} equals {price} {secondCurrency.currency}
+            1 {firstCurrency.currency} equals {price.toFixed(8)}{" "}
+            {secondCurrency.currency}
           </p>
         </div>
       </div>
@@ -110,13 +139,20 @@ export default function Component() {
           <Input
             className="border rounded-md p-2  w-full"
             name="first_currency"
-            placeholder="1"
+            placeholder={firstCurrency.symbol === Euro.symbol ? "1" : "0.1"}
+            value={amount}
             type="number"
-            onChange={handleCurrencyChange}
+            onChange={handleAmountChange}
           />
           <div>{firstCurrency.symbol}</div>
         </div>
-        <SwapIcon className="text-gray-600" />
+        <Button
+          className="hover:bg-blue-300"
+          variant="ghost"
+          onClick={swapCurrency}
+        >
+          <SwapIcon className="text-gray-600" />
+        </Button>
         <div className="flex items-center space-x-3 w-full">
           <Input
             className="border rounded-md p-2  w-full"
@@ -138,7 +174,7 @@ function SwapIcon(props: any) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="w-20 h-20"
+      className="w-5 h-5"
     >
       <path
         fill-rule="evenodd"

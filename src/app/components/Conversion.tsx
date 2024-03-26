@@ -1,16 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from "@/components/ui/select";
 import { useEffect, useState } from "react";
-import euroToEth from "../_actions/euroToEth";
 import getEthPrice from "../_actions/getEthPrice";
+import { ArrowLeftRight } from "lucide-react";
+
 const Euro = {
   name: "Euro",
   symbol: "EUR",
@@ -95,7 +89,7 @@ export default function Component() {
   };
   return (
     <div className="max-w-4xl mx-auto py-12 px-6 ">
-      <div className="flex items-center space-x-4">
+      <div className="items-center space-x-4 md:flex ">
         <img
           alt="Token logo"
           className="h-10 w-10 rounded-full"
@@ -147,7 +141,7 @@ export default function Component() {
           variant="ghost"
           onClick={swapCurrency}
         >
-          <SwapIcon className="text-gray-600" />
+          <ArrowLeftRight className="text-gray-600" />
         </Button>
         <div className="flex items-center space-x-3 w-full">
           <Input
@@ -164,19 +158,3 @@ export default function Component() {
   );
 }
 
-function SwapIcon(props: any) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="w-5 h-5"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M15.97 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 1 1-1.06-1.06l3.22-3.22H7.5a.75.75 0 0 1 0-1.5h11.69l-3.22-3.22a.75.75 0 0 1 0-1.06Zm-7.94 9a.75.75 0 0 1 0 1.06l-3.22 3.22H16.5a.75.75 0 0 1 0 1.5H4.81l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 0Z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  );
-}

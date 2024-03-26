@@ -129,7 +129,7 @@ export default function Component() {
           <Input
             className="border rounded-md p-2  w-full"
             name="first_currency"
-            placeholder={firstCurrency.symbol === Euro.symbol ? "1" : "0.1"}
+            placeholder="1"
             value={amount}
             type="number"
             onChange={handleAmountChange}

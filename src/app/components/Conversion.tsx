@@ -24,7 +24,7 @@ export default function Component() {
   const [amount, setAmount] = useState(1);
   const [etherPrice, setEtherPrice] = useState(0);
 
-  //i use _etherPrice pour les variables locales et etherPrice pour les states
+  // j'utilise _etherPrice pour les variables locales et etherPrice pour les states
   const getNewEthPrice = async () => {
     const _etherPrice = await getEthPrice();
     if (_etherPrice) {

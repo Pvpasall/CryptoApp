@@ -27,10 +27,11 @@ export default function AccountModal({ isOpen, onClose }: Props) {
     deactivate();
     onClose();
   }
+  // copier dans le presse papier quand on click sur l'addresse.
   const copyAddressToClipboard = () => {
      navigator.clipboard.writeText(account as string)
       .then(() => alert('Content copied to clipboard'))
-      .catch(err => console.error('Failed to copy:', err));
+      .catch(err => console.error('Error when copying:', err));
   }
   
 

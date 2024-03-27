@@ -88,7 +88,7 @@ export default function Component() {
     }
   };
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6 ">
+    <div className="max-w-4xl mx-auto py-12">
       <div className="items-center space-x-4 md:flex ">
         <img
           alt="Token logo"
@@ -103,12 +103,12 @@ export default function Component() {
         />
         <div>
           <h1 className="text-3xl font-bold">
-            {firstCurrency.symbol}/{secondCurrency.symbol}: Convert{" "}
-            {firstCurrency.name} ({firstCurrency.symbol}) to{" "}
+            {firstCurrency.symbol}/{secondCurrency.symbol}: Convertir{" "}
+            {firstCurrency.name} ({firstCurrency.symbol}) en{" "}
             {secondCurrency.name} ({secondCurrency.symbol})
           </h1>
           <p className="text-sm text-gray-600">
-            1 {firstCurrency.currency} equals {price.toFixed(8)}{" "}
+            1 {firstCurrency.currency} égale {price.toFixed(8)}{" "}
             {secondCurrency.currency}
           </p>
         </div>
@@ -120,7 +120,7 @@ export default function Component() {
             variant="ghost"
             onClick={refreshEtherPrice}
           >
-            Refresh
+            rafraichir le prix de l'éther.
           </Button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import getEthPrice from "../_actions/getEthPrice";
 import { ArrowLeftRight } from "lucide-react";
+import Image from "next/image";
 
 const Euro = {
   name: "Euro",
@@ -90,7 +91,7 @@ export default function Component() {
   return (
     <div className="max-w-4xl mx-auto py-12">
       <div className="items-center space-x-4 md:flex ">
-        <img
+        <Image
           alt="Token logo"
           className="h-10 w-10 rounded-full"
           height="40"
@@ -120,7 +121,7 @@ export default function Component() {
             variant="ghost"
             onClick={refreshEtherPrice}
           >
-            rafraichir le prix de l'éther.
+            rafraichir le prix de éther.
           </Button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import getEthPrice from "../_actions/getEthPrice";
 import { ArrowLeftRight } from "lucide-react";
+import Image from "next/image";
 
 const Euro = {
   name: "Euro",
@@ -88,9 +89,9 @@ export default function Component() {
     }
   };
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6 ">
+    <div className="max-w-4xl mx-auto py-12">
       <div className="items-center space-x-4 md:flex ">
-        <img
+        <Image
           alt="Token logo"
           className="h-10 w-10 rounded-full"
           height="40"
@@ -103,12 +104,12 @@ export default function Component() {
         />
         <div>
           <h1 className="text-3xl font-bold">
-            {firstCurrency.symbol}/{secondCurrency.symbol}: Convert{" "}
-            {firstCurrency.name} ({firstCurrency.symbol}) to{" "}
+            {firstCurrency.symbol}/{secondCurrency.symbol}: Convertir{" "}
+            {firstCurrency.name} ({firstCurrency.symbol}) en{" "}
             {secondCurrency.name} ({secondCurrency.symbol})
           </h1>
           <p className="text-sm text-gray-600">
-            1 {firstCurrency.currency} equals {price.toFixed(8)}{" "}
+            1 {firstCurrency.currency} égale {price.toFixed(8)}{" "}
             {secondCurrency.currency}
           </p>
         </div>
@@ -120,7 +121,7 @@ export default function Component() {
             variant="ghost"
             onClick={refreshEtherPrice}
           >
-            Refresh
+            rafraichir le prix de éther.
           </Button>
         </div>
       </div>

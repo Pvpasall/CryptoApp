@@ -23,7 +23,7 @@ export default function ConnectButton({ handleOpenModal }: Props) {
       bg="rgb(247, 248, 250)"
       borderRadius="xl"
       py="0"
-      w={{ base: "auto", md: "50%" }}
+      w={{ base: "auto" }}
     >
       <Box px="3">
         <Text color="black" fontSize="md">
@@ -57,17 +57,17 @@ export default function ConnectButton({ handleOpenModal }: Props) {
   ) : (
     <Button
       onClick={handleConnectWallet}
-      bg="rgb(253, 234, 241)"
-      color="rgb(213, 0, 102)"
+      bg="rgb(21, 93, 177)"
+      color="white"
       fontSize="1rem"
       fontWeight="semibold"
       borderRadius="xl"
-      border="0.06rem solid rgb(253, 234, 241)"
+      border="0.06rem solid white"
       _hover={{
-        borderColor: "rgb(213, 0, 102)",
+        borderColor: "white",
       }}
       _active={{
-        borderColor: "rgb(213, 0, 102)",
+        borderColor: "white",
       }}
     >
       Connect to a wallet
